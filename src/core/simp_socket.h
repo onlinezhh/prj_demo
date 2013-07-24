@@ -1,6 +1,5 @@
 /*
- * Copyright (2013) zhh
- * Copyright (2013) Simple Http, Inc.
+ * Copyright (C) 2013 zhh
  */
 
 #ifndef CORE_SIMP_SOCKET_H
