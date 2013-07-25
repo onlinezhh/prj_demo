@@ -5,22 +5,51 @@
 #ifndef COMMON_LOG_SIMP_LOGGER_H
 #define COMMON_LOG_SIMP_LOGGER_H
 
+#include "simp_loggerimpl.h"
+
+
 namespace SIMP_LOG
 {
 
+//! \brief	log level
+enum LogLevel
+{
+	LL_ALL = 0,
+	LL_TRACE,
+	LL_DEBUG,
+	LL_INFO,
+	LL_WARNING,
+	LL_ERROR,
+	LL_FATAL
+};
+
+
+//! \brief	logger interface
 class SIMP_Logger
 {
 public:
 	static SIMP_Logger* Instance();
+
+public:
+	bool Init();
+
+	void SetLogLevel(LogLevel ll);
+	LogLevel GetLogLevel() const;
+
+	void Log(LogLevel ll, const SIMP_String& msg, const char* file = NULL, int line = -1);
+	void Assert(bool val, const SIMP_String& msg);
 
 private:
 	SIMP_Logger();
 	SIMP_Logger(const SIMP_Logger& log);
 	~SIMP_Logger();
 
-	SIMP_Logger& operator= (const SIMP_Logger& log);
+	SIMP_Logger& operator =(const SIMP_Logger& log);
+
+private:
+	SIMP_LoggerImpl m_loggerImpl;
 };
 
 }
 
-#endif
+#endif // COMMON_LOG_SIMP_LOGGER_H

@@ -1,0 +1,6 @@
+SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
+SET(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
+
+SET(LIB_LIST
+	simp_logger.cpp
+	simp_loggerimpl.cpp)
