@@ -5,10 +5,13 @@
 #ifndef COMMON_LOG_SIMP_LOGGER_IMPL_H
 #define COMMON_LOG_SIMP_LOGGER_IMPL_H
 
+#include "simp_appendermanager.h"
+
+
 namespace SIMP_LOG
 {
 
-class SIMP_LoggerImpl
+class SIMP_LoggerImpl : public SIMP_AppenderManager
 {
 public:
 	SIMP_LoggerImpl();
@@ -21,6 +24,9 @@ public:
 	LogLevel GetLogLevel() const;
 
 	void Log(LogLevel ll, const SIMP_String& msg, const char* file = NULL, int line = -1);
+
+private:
+	LogLevel m_logLevel;
 
 private:
 	SIMP_LoggerImpl(const SIMP_LoggerImpl& log);
