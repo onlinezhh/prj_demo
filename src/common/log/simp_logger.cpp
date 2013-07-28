@@ -3,35 +3,50 @@
  */
 
 #include "simp_logger.h"
+#include "simp_loggerimpl.h"
 
 
 namespace SIMP_LOG
 {
 
+SIMP_Logger::SIMP_Logger(SIMP_LoggerImpl* impl) : m_loggerImpl(impl)
+{
+}
+
 SIMP_Logger* SIMP_Logger::Instance()
 {
-	static SIMP_Logger instance;
+	static SIMP_LoggerImpl impl;
+	static SIMP_Logger instance(&impl);
 	return &instance;
 }
 
 bool SIMP_Logger::Init()
 {
+	return m_loggerImpl->Init();
 }
 
 void SIMP_Logger::SetLogLevel(LogLevel ll)
 {
+	m_loggerImpl->SetLogLevel(ll);
 }
 
 LogLevel SIMP_Logger::GetLogLevel() const
 {
+	return m_loggerImpl->GetLogLevel();
 }
 
-void SIMP_Logger::Log(LogLevel ll, const SIMP_String& msg, const char* file /*= NULL*/, int line /*= -1*/)
+void SIMP_Logger::Log(LogLevel ll,
+					  const SIMP_String& msg,
+					  const char* file /*= NULL*/,
+					  int line /*= -1*/)
 {
+	m_loggerImpl->Log(ll, msg, file, line);
 }
 
 void SIMP_Logger::Assert(bool val, const SIMP_String& msg)
 {
+	if (!val)
+	  m_loggerImpl->Log(LL_FATAL, msg);
 }
 
 }

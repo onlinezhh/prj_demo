@@ -5,10 +5,10 @@
 #ifndef COMMON_LOG_SIMP_LOGGER_H
 #define COMMON_LOG_SIMP_LOGGER_H
 
-#include "simp_loggerimpl.h"
+#include "simp_types.h"
 
 
-namespace SIMP_LOG
+namespace SIMP_BASE
 {
 
 //! \brief	log level
@@ -23,6 +23,7 @@ enum LogLevel
 	LL_FATAL
 };
 
+class SIMP_LoggerImpl;
 
 //! \brief	logger interface
 class SIMP_Logger
@@ -40,6 +41,9 @@ public:
 	void Assert(bool val, const SIMP_String& msg);
 
 private:
+	SIMP_Logger(SIMP_LoggerImpl* impl);
+
+private:
 	SIMP_Logger();
 	SIMP_Logger(const SIMP_Logger& log);
 	~SIMP_Logger();
@@ -47,7 +51,7 @@ private:
 	SIMP_Logger& operator =(const SIMP_Logger& log);
 
 private:
-	SIMP_LoggerImpl m_loggerImpl;
+	SIMP_LoggerImpl* m_loggerImpl;
 };
 
 }
