@@ -6,7 +6,7 @@
 #define COMMON_LOG_SIMP_LOGGER_IMPL_H
 
 #include "simp_appendermanager.h"
-#include "simp_logger.h"
+#include "simp_loglevel.h"
 
 
 namespace SIMP_BASE
@@ -32,7 +32,7 @@ private:
 
 private:
 	SIMP_LoggerImpl(const SIMP_LoggerImpl& log);
-	SIMP_Logger& operator =(const SIMP_LoggerImpl& log);
+	SIMP_LoggerImpl& operator =(const SIMP_LoggerImpl& log);
 };
 
 }

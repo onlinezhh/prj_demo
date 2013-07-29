@@ -35,4 +35,8 @@ void SIMP_AppenderManager::RemoveAllAppender()
 {
 }
 
+const SIMP_Appender* SIMP_AppenderManager::GetAppender(const SIMP_String& name)
+{
+}
+
 }

@@ -11,6 +11,7 @@
 #include <vector>
 #include <list>
 #include <map>
+#include <boost/shared_ptr.hpp>
 
 
 namespace SIMP_BASE
@@ -49,6 +50,8 @@ namespace SIMP_BASE
 	typedef std::vector SIMP_Vector;
 	typedef std::list SIMP_List;
 	typedef std::map SIMP_Map;
+
+	#define SIMP_SharedPtr boost::shared_ptr;
 }
 
 #endif
