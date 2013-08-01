@@ -12,8 +12,6 @@
 namespace SIMP_BASE
 {
 
-class SIMP_LoggerImpl;
-
 //! \brief	logger interface
 class SIMP_Logger
 {
@@ -30,6 +28,7 @@ public:
 	void Assert(bool val, const SIMP_String& msg);
 
 private:
+	class SIMP_LoggerImpl;
 	SIMP_Logger(SIMP_LoggerImpl* impl);
 
 private:

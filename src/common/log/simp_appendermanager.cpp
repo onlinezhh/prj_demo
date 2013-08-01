@@ -19,24 +19,46 @@ SIMP_AppenderManager::~SIMP_AppenderManager()
 	RemoveAllAppender();
 }
 
-void SIMP_AppenderManager::AddAppender(SIMP_Appender* appender)
+void SIMP_AppenderManager::AddAppender(SIMP_AppenderPtr appender)
 {
-	assert(appender != NULL);
+	if (NULL == appender)
+	{
+		assert(false);
+		return;
+	}
 
-	if (NULL != appender)
+	AppenderPtrList::iterator it = std::find(m_appenderList.begin(),
+		m_appenderList.end(), appender);
+
+	if (it == m_appenderList.end())
 		m_appenderList.push_back(appender);
 }
 
 void SIMP_AppenderManager::RemoveAppender(const SIMP_String& name)
 {
+	for (AppenderPtrList::iterator it = m_appenderList.begin();
+		it != m_appenderList.end();
+		++it)
+	{
+		if ((*it)->GetName() == name)
+		{
+			m_appenderList.erase(it);
+			break;
+		}
+	}
 }
 
-void SIMP_AppenderManager::RemoveAllAppender()
+const SIMP_AppenderPtr SIMP_AppenderManager::GetAppender(const SIMP_String& name)
 {
-}
+	for (AppenderPtrList::iterator it = m_appenderList.begin();
+		it != m_appenderList.end();
+		++it)
+	{
+		if (it->GetName() == name)
+			return *it;
+	}
 
-const SIMP_Appender* SIMP_AppenderManager::GetAppender(const SIMP_String& name)
-{
+	return SIMP_AppenderPtr(NULL);
 }
 
 }

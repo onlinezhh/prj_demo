@@ -19,7 +19,7 @@ class SIMP_AppenderManager
 public:
 	void AddAppender(SIMP_AppenderPtr appender);
 	void RemoveAppender(const SIMP_String& name);
-	void RemoveAllAppender();
+	void RemoveAllAppender() { m_appenderList.clear(); }
 
 	SIMP_AppenderPtr GetAppender(const SIMP_String& name);
 	const AppenderPtrList& GetAllAppender() { return m_appenderList; }
