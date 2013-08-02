@@ -16,6 +16,7 @@ class SIMP_LoggerImpl : public SIMP_AppenderManager
 {
 public:
 	SIMP_LoggerImpl();
+	SIMP_LoggerImpl(const SIMP_String& name);
 	~SIMP_LoggerImpl();
 
 public:
@@ -24,11 +25,17 @@ public:
 	void SetLogLevel(LogLevel ll) { m_logLevel = ll; }
 	LogLevel GetLogLevel() const { return m_logLevel; }
 
+	void SetName(const SIMP_String& name) { m_name = name; }
+	const SIMP_String& GetName() const { return m_name; }
+
 	void Log(LogLevel ll, const SIMP_String& msg, const char* file = NULL, int line = -1);
-	void ForceLog(LogLevel ll, const SIMP_String& msg, const char* file = NULL, int line = -1);
+
+private:
+	bool CanLog(LogLevel ll) { return (ll >= m_logLevel); }
 
 private:
 	LogLevel m_logLevel;
+	SIMP_String m_name;
 
 private:
 	SIMP_LoggerImpl(const SIMP_LoggerImpl& log);

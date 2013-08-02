@@ -27,6 +27,8 @@ public:
 	void Log(LogLevel ll, const SIMP_String& msg, const char* file = NULL, int line = -1);
 	void Assert(bool val, const SIMP_String& msg);
 
+	~SIMP_Logger();
+
 private:
 	class SIMP_LoggerImpl;
 	SIMP_Logger(SIMP_LoggerImpl* impl);
@@ -34,7 +36,6 @@ private:
 private:
 	SIMP_Logger();
 	SIMP_Logger(const SIMP_Logger& log);
-	~SIMP_Logger();
 
 	SIMP_Logger& operator =(const SIMP_Logger& log);
 

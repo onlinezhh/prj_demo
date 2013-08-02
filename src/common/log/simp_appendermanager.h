@@ -24,6 +24,8 @@ public:
 	SIMP_AppenderPtr GetAppender(const SIMP_String& name);
 	const AppenderPtrList& GetAllAppender() { return m_appenderList; }
 
+	void AppendLoop(const SIMP_LogEvent& event) const;
+
 protected:
 	SIMP_AppenderManager();
 	virtual ~SIMP_AppenderManager();
