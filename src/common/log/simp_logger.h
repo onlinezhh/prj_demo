@@ -21,6 +21,8 @@ public:
 public:
 	bool Init();
 
+	void SetAppName(const SIMP_String& name);
+	const SIMP_String& GetAppName() const;
 	void SetLogLevel(LogLevel ll);
 	LogLevel GetLogLevel() const;
 

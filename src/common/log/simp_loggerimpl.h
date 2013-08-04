@@ -20,8 +20,6 @@ public:
 	~SIMP_LoggerImpl();
 
 public:
-	bool Init();
-
 	void SetLogLevel(LogLevel ll) { m_logLevel = ll; }
 	LogLevel GetLogLevel() const { return m_logLevel; }
 

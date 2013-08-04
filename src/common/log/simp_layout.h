@@ -10,6 +10,16 @@ namespace SIMP_BASE
 
 class SIMP_Layout
 {
+public:
+	SIMP_Layout();
+	virtual ~SIMP_Layout();
+
+public:
+	virtual SIMP_String Format(SIMP_LogEventPtr event) = 0;
+
+private:
+	SIMP_Layout(const SIMP_Layout&);
+	SIMP_Layout& operator =(const SIMP_Layout&);
 };
 
 }

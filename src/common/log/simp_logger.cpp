@@ -25,6 +25,16 @@ bool SIMP_Logger::Init()
 	return m_loggerImpl->Init();
 }
 
+void SIMP_Logger::SetAppName(const SIMP_String& name)
+{
+	m_loggerImpl->SetName(name);
+}
+
+const SIMP_String& SIMP_Logger::GetAppName()
+{
+	return m_loggerImpl->GetName();
+}
+
 void SIMP_Logger::SetLogLevel(LogLevel ll)
 {
 	m_loggerImpl->SetLogLevel(ll);
@@ -50,5 +60,4 @@ void SIMP_Logger::Assert(bool val, const SIMP_String& msg)
 }
 
 }
-
 
