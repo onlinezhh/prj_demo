@@ -5,6 +5,9 @@
 #ifndef COMMON_LOG_SIMP_LAYOUT_H
 #define COMMON_LOG_SIMP_LAYOUT_H
 
+#include "simp_types.h"
+
+
 namespace SIMP_BASE
 {
 
@@ -21,6 +24,8 @@ private:
 	SIMP_Layout(const SIMP_Layout&);
 	SIMP_Layout& operator =(const SIMP_Layout&);
 };
+
+typedef SIMP_SharedPtr<SIMP_Layout> SIMP_LayoutPtr;
 
 }
 

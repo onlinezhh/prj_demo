@@ -6,6 +6,7 @@
 #define COMMON_LOG_SIMP_APPENDER_H
 
 #include "simp_types.h"
+#include "simp_logevent.h"
 
 
 namespace SIMP_BASE

@@ -61,13 +61,13 @@ const SIMP_AppenderPtr SIMP_AppenderManager::GetAppender(const SIMP_String& name
 	return SIMP_AppenderPtr(NULL);
 }
 
-void SIMP_AppenderManager::AppendLoop(const SIMP_LogEvent& event) const
+void SIMP_AppenderManager::AppendLoop(SIMP_LogEventPtr eventPtr) const
 {
 	for (AppenderPtrList::iterator it = m_appenderList.begin();
 		it != m_appenderList.end();
 		++it)
 	{
-		(*it)->DoAppend(event);
+		(*it)->DoAppend(eventPtr);
 	}
 }
 

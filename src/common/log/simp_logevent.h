@@ -1,0 +1,33 @@
+/*
+ * Copyright (C) 2013 zhh
+ */
+
+#ifndef COMMON_LOG_SIMP_LOG_EVENT_H
+#define COMMON_LOG_SIMP_LOG_EVENT_H
+
+#include "simp_loglevel.h"
+#include "simp_types.h"
+
+
+namespace SIMP_BASE
+{
+
+class SIMP_LogEvent
+{
+public:
+	SIMP_LogEvent();
+	SIMP_LogEvent(LogLevel ll, const SIMP_String& msg, const char* file, int line);
+	~SIMP_LogEvent();
+
+public:
+	LogLevel m_logLevel;
+	SIMP_String m_msg;
+	SIMP_String m_file;
+	int m_line;
+};
+
+typedef SIMP_SharedPtr<SIMP_LogEvent> SIMP_LogEventPtr;
+
+}
+
+#endif // COMMON_LOG_SIMP_LOG_EVENT_H

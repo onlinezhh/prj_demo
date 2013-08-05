@@ -3,6 +3,7 @@
  */
 
 #include "simp_loggerimpl.h"
+#include "simp_logevent.h"
 
 
 namespace SIMP_LOG
@@ -30,7 +31,7 @@ void SIMP_LoggerImpl::Log(LogLevel ll,
 	if (!CanLog(ll))
 		return;
 
-	LogEventPtr eventPtr(new LogEvent(ll, msg, file, line));
+	SIMP_LogEventPtr eventPtr(new SIMP_LogEvent(ll, msg, file, line));
 	AppendLoop(eventPtr);
 }
 
