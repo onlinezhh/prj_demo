@@ -52,6 +52,8 @@ namespace SIMP_BASE
 	typedef std::map SIMP_Map;
 
 	#define SIMP_SharedPtr boost::shared_ptr;
+
+	typedef boost::thread SIMP_Thread;
 }
 
 #endif

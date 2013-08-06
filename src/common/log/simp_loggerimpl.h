@@ -17,7 +17,7 @@ class SIMP_LoggerImpl : public SIMP_AppenderManager
 public:
 	SIMP_LoggerImpl();
 	SIMP_LoggerImpl(const SIMP_String& name);
-	~SIMP_LoggerImpl();
+	virtual ~SIMP_LoggerImpl();
 
 public:
 	void SetLogLevel(LogLevel ll) { m_logLevel = ll; }
@@ -36,8 +36,8 @@ private:
 	SIMP_String m_name;
 
 private:
-	SIMP_LoggerImpl(const SIMP_LoggerImpl& log);
-	SIMP_LoggerImpl& operator =(const SIMP_LoggerImpl& log);
+	SIMP_LoggerImpl(const SIMP_LoggerImpl&);
+	SIMP_LoggerImpl& operator =(const SIMP_LoggerImpl&);
 };
 
 }

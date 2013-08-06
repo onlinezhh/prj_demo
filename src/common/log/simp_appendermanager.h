@@ -34,8 +34,8 @@ protected:
 	AppenderPtrList m_appenderList;
 
 private:
-	SIMP_AppenderManager(const SIMP_AppenderManager& manager);
-	SIMP_AppenderManager& operator =(const SIMP_AppenderManager& manager);
+	SIMP_AppenderManager(const SIMP_AppenderManager&);
+	SIMP_AppenderManager& operator =(const SIMP_AppenderManager&);
 };
 
 }
