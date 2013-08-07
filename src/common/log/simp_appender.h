@@ -15,12 +15,12 @@ namespace SIMP_BASE
 class SIMP_Appender
 {
 public:
-	SIMP_Appender();
+	SIMP_Appender(const SIMP_String& name, SIMP_LayoutPtr layout);
 	virtual ~SIMP_Appender();
 
 public:
-	virtual bool Open() = 0;
-	virtual void Close() = 0;
+	bool Open();
+	void Close();
 
 	void DoAppend(SIMP_LogEventPtr event);
 
@@ -30,13 +30,29 @@ public:
 	SIMP_LayoutPtr GetLayout() const { return m_layout; }
 
 protected:
-	SIMP_String FormatEvent(SIMP_LogEventPtr event);
-	virtual Append() = 0;
+	void Append();
 
+	virtual bool OpenImpl() = 0;
+	virtual void CloseImpl() = 0;
+
+	virtual void AppendImpl() = 0;
+
+	void FormatEvent(SIMP_LogEventPtr event, SIMP_String& result);
 
 protected:
 	SIMP_String m_name;
 	SIMP_LayoutPtr m_layout;
+
+	typedef SIMP_List<SIMP_LogEventPtr> LogEventPtrList;
+	LogEventPtrList m_eventList;
+
+	SIMP_Mutex m_mutex;
+	SIMP_Condition m_condition;
+
+	bool m_isOpen;
+
+private:
+	SIMP_Appender();
 };
 
 typedef SIMP_SharedPtr<SIMP_Appender> SIMP_AppenderPtr;

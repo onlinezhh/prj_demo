@@ -54,7 +54,7 @@ const SIMP_AppenderPtr SIMP_AppenderManager::GetAppender(const SIMP_String& name
 		it != m_appenderList.end();
 		++it)
 	{
-		if (it->GetName() == name)
+		if ((*it)->GetName() == name)
 			return *it;
 	}
 

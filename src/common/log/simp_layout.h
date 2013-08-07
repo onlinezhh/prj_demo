@@ -18,7 +18,7 @@ public:
 	virtual ~SIMP_Layout();
 
 public:
-	virtual SIMP_String Format(SIMP_LogEventPtr event) = 0;
+	virtual void Format(SIMP_LogEventPtr event, SIMP_String& result) = 0;
 };
 
 typedef SIMP_SharedPtr<SIMP_Layout> SIMP_LayoutPtr;

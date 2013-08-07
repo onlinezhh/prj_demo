@@ -17,7 +17,11 @@ class SIMP_LogEvent
 public:
 	SIMP_LogEvent();
 	SIMP_LogEvent(LogLevel ll, const SIMP_String& msg, const char* file, int line);
+	SIMP_LogEvent(const SIMP_LogEvent& event);
 	~SIMP_LogEvent();
+
+public:
+	SIMP_LogEvent& operator =(const SIMP_LogEvent& event);
 
 public:
 	LogLevel m_logLevel;

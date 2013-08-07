@@ -9,11 +9,6 @@
 namespace SIMP_LOG
 {
 
-SIMP_LoggerImpl::SIMP_LoggerImpl()
-	: m_logLevel(LL_ALL), m_name("simple_log")
-{
-}
-
 SIMP_LoggerImpl::SIMP_LoggerImpl(const SIMP_String& name)
 	: m_logLevel(LL_ALL), m_name(name)
 {

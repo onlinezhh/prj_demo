@@ -15,7 +15,6 @@ namespace SIMP_BASE
 class SIMP_LoggerImpl : public SIMP_AppenderManager
 {
 public:
-	SIMP_LoggerImpl();
 	SIMP_LoggerImpl(const SIMP_String& name);
 	virtual ~SIMP_LoggerImpl();
 
@@ -36,6 +35,7 @@ private:
 	SIMP_String m_name;
 
 private:
+	SIMP_LoggerImpl();
 	SIMP_LoggerImpl(const SIMP_LoggerImpl&);
 	SIMP_LoggerImpl& operator =(const SIMP_LoggerImpl&);
 };

@@ -12,6 +12,7 @@
 #include <list>
 #include <map>
 #include <boost/shared_ptr.hpp>
+#include <boost/thread.hpp>
 
 
 namespace SIMP_BASE
@@ -51,9 +52,10 @@ namespace SIMP_BASE
 	typedef std::list SIMP_List;
 	typedef std::map SIMP_Map;
 
-	#define SIMP_SharedPtr boost::shared_ptr;
-
+	typedef boost::shared_ptr SIMP_SharedPtr;
 	typedef boost::thread SIMP_Thread;
+	typedef boost::mutex SIMP_Mutex;
+	typedef boost::condition_variable_any SIMP_Condition;
 }
 
 #endif
