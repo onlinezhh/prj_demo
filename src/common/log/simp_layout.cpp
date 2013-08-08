@@ -7,4 +7,13 @@
 
 namespace SIMP_BASE
 {
+
+SIMP_Layout::SIMP_Layout()
+{
+}
+
+SIMP_Layout::~SIMP_Layout()
+{
+}
+
 }

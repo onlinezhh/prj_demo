@@ -42,6 +42,14 @@ void SIMP_Appender::Close()
 
 void SIMP_Appender::DoAppend(SIMP_LogEventPtr event)
 {
+	if (!m_isOpen)
+		return; // must be opened
+
+	m_mutex.lock();
+
+	m_eventList.push_back(event);
+
+	m_mutex.unlock();
 }
 
 void SIMP_Appender::Append()
