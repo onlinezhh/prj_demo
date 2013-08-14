@@ -79,6 +79,7 @@ void SIMP_Appender::Append()
 void SIMP_Appender::FormatEvent(SIMP_LogEventPtr event,
 								SIMP_String& result)
 {
+	m_layout->Format(event, result);
 }
 
 }

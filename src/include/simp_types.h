@@ -19,7 +19,7 @@ namespace SIMP_BASE
 {
 
 #if defined (_UNICODE) || defined(UNICODE)
-	typedef std::wchar_t tchar;
+	typedef wchar_t tchar;
 	typedef std::wstring SIMP_String;
 	typedef std::wistringstream SIMP_IStringStream;
 	typedef std::wostringstream SIMP_OStringStream;
@@ -33,7 +33,7 @@ namespace SIMP_BASE
 	#define tcout std::wcout;
 	#define tcin std::wcin;
 #else
-	typedef std::char tchar;
+	typedef char tchar;
 	typedef std::string SIMP_String;
 	typedef std::istringstream SIMP_IStringStream;
 	typedef std::ostringstream SIMP_OStringStream;
@@ -48,11 +48,6 @@ namespace SIMP_BASE
 	#define tcin std::cin;
 #endif
 
-	typedef std::vector SIMP_Vector;
-	typedef std::list SIMP_List;
-	typedef std::map SIMP_Map;
-
-	typedef boost::shared_ptr SIMP_SharedPtr;
 	typedef boost::thread SIMP_Thread;
 	typedef boost::mutex SIMP_Mutex;
 	typedef boost::condition_variable_any SIMP_Condition;

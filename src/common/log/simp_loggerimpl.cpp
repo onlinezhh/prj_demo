@@ -6,7 +6,7 @@
 #include "simp_logevent.h"
 
 
-namespace SIMP_LOG
+namespace SIMP_BASE
 {
 
 SIMP_LoggerImpl::SIMP_LoggerImpl(const SIMP_String& name)

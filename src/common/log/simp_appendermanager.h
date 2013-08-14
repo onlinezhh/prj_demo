@@ -12,7 +12,7 @@
 namespace SIMP_BASE
 {
 
-typedef SIMP_List<SIMP_AppenderPtr> AppenderPtrList;
+typedef std::list<SIMP_AppenderPtr> AppenderPtrList;
 
 class SIMP_AppenderManager
 {
@@ -24,7 +24,7 @@ public:
 	SIMP_AppenderPtr GetAppender(const SIMP_String& name);
 	const AppenderPtrList& GetAllAppender() { return m_appenderList; }
 
-	void AppendLoop(SIMP_LogEventPtr eventPtr) const;
+	void AppendLoop(SIMP_LogEventPtr eventPtr);
 
 protected:
 	SIMP_AppenderManager();

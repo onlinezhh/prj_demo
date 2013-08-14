@@ -3,6 +3,7 @@
  */
 
 #include "simp_logevent.h"
+#include "../base/simp_helper.h"
 
 
 namespace SIMP_BASE
@@ -17,8 +18,9 @@ SIMP_LogEvent::SIMP_LogEvent(LogLevel ll,
 							 const SIMP_String& msg,
 							 const char* file,
 							 int line)
-	: m_logLevel(ll), m_msg(msg), m_file(file), m_line(line)
+	: m_logLevel(ll), m_msg(msg), m_line(line)
 {
+	m_file = SIMP_C_STR_TO_TSTRING(file);
 }
 
 SIMP_LogEvent::SIMP_LogEvent(const SIMP_LogEvent& event)
@@ -30,12 +32,14 @@ SIMP_LogEvent::~SIMP_LogEvent()
 {
 }
 
-SIMP_LogEvent& SIMP_LogEvent::operator =(const SIMP_LogEvent& event);
+SIMP_LogEvent& SIMP_LogEvent::operator =(const SIMP_LogEvent& event)
 {
 	m_logLevel = event.m_logLevel;
 	m_msg = event.m_msg;
 	m_file = event.m_file;
 	m_line = event.m_line;
+
+	return *this;
 }
 
 } 

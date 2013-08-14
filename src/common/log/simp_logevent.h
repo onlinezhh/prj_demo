@@ -30,7 +30,7 @@ public:
 	int m_line;
 };
 
-typedef SIMP_SharedPtr<SIMP_LogEvent> SIMP_LogEventPtr;
+typedef boost::shared_ptr<SIMP_LogEvent> SIMP_LogEventPtr;
 
 }
 

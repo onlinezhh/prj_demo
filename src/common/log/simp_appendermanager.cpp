@@ -48,7 +48,7 @@ void SIMP_AppenderManager::RemoveAppender(const SIMP_String& name)
 	}
 }
 
-const SIMP_AppenderPtr SIMP_AppenderManager::GetAppender(const SIMP_String& name)
+SIMP_AppenderPtr SIMP_AppenderManager::GetAppender(const SIMP_String& name)
 {
 	for (AppenderPtrList::iterator it = m_appenderList.begin();
 		it != m_appenderList.end();
@@ -58,10 +58,10 @@ const SIMP_AppenderPtr SIMP_AppenderManager::GetAppender(const SIMP_String& name
 			return *it;
 	}
 
-	return SIMP_AppenderPtr(NULL);
+	return SIMP_AppenderPtr();
 }
 
-void SIMP_AppenderManager::AppendLoop(SIMP_LogEventPtr eventPtr) const
+void SIMP_AppenderManager::AppendLoop(SIMP_LogEventPtr eventPtr)
 {
 	for (AppenderPtrList::iterator it = m_appenderList.begin();
 		it != m_appenderList.end();

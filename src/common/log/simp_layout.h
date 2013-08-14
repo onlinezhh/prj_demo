@@ -6,6 +6,7 @@
 #define COMMON_LOG_SIMP_LAYOUT_H
 
 #include "simp_types.h"
+#include "simp_logevent.h"
 
 
 namespace SIMP_BASE
@@ -21,7 +22,7 @@ public:
 	virtual void Format(SIMP_LogEventPtr event, SIMP_String& result) = 0;
 };
 
-typedef SIMP_SharedPtr<SIMP_Layout> SIMP_LayoutPtr;
+typedef boost::shared_ptr<SIMP_Layout> SIMP_LayoutPtr;
 
 }
 

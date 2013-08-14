@@ -7,6 +7,7 @@
 
 #include "simp_types.h"
 #include "simp_logevent.h"
+#include "simp_layout.h"
 
 
 namespace SIMP_BASE
@@ -43,7 +44,7 @@ protected:
 	SIMP_String m_name;
 	SIMP_LayoutPtr m_layout;
 
-	typedef SIMP_List<SIMP_LogEventPtr> LogEventPtrList;
+	typedef std::list<SIMP_LogEventPtr> LogEventPtrList;
 	LogEventPtrList m_eventList;
 
 	SIMP_Mutex m_mutex;
@@ -55,7 +56,7 @@ private:
 	SIMP_Appender();
 };
 
-typedef SIMP_SharedPtr<SIMP_Appender> SIMP_AppenderPtr;
+typedef boost::shared_ptr<SIMP_Appender> SIMP_AppenderPtr;
 
 }
 
