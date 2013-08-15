@@ -10,7 +10,7 @@ namespace SIMP_BASE
 {
 
 SIMP_Appender::SIMP_Appender(const SIMP_String& name, SIMP_LayoutPtr layout)
-	: m_name(name), m_layout(layout), m_isOpen(false)
+	: m_name(name), m_layout(layout), m_isOpen(false), m_isWait(false)
 {
 }
 
@@ -43,13 +43,19 @@ void SIMP_Appender::Close()
 	m_mutex.lock();
 
 	m_isOpen = false;
-	if (0 != m_eventList.size())
+
+	if (m_isWait)
 	{
-		m_condition.wait(m_mutex);
+		m_condition.notify_all();
+		m_isWait = false;
 	}
 	else
 	{
-		m_condition.notify_all();
+		if (0 != m_eventList.size())
+		{
+			m_isWait = true;
+			m_condition.wait(m_mutex);
+		}
 	}
 
 	m_mutex.unlock();
@@ -65,9 +71,10 @@ void SIMP_Appender::DoAppend(SIMP_LogEventPtr event)
 	m_mutex.lock();
 
 	m_eventList.push_back(event);
-	if (1 == m_eventList.size())
+	if (m_isWait)
 	{
 		m_condition.notify_all();
+		m_isWait = false;
 	}
 
 	m_mutex.unlock();
@@ -75,37 +82,53 @@ void SIMP_Appender::DoAppend(SIMP_LogEventPtr event)
 
 void SIMP_Appender::Append()
 {
-	while (m_isOpen || m_eventList.size() != 0)
+	while (m_isOpen || 0 != m_eventList.size())
 	{
 		m_mutex.lock();
 
 		if (0 == m_eventList.size())
 		{
+			m_isWait = true;
 			m_condition.wait(m_mutex);
 		}
 
-		SIMP_LogEventPtr event = m_eventList.front();
-		m_eventList.pop_front();
+		SIMP_LogEventPtr event;
+		if (0 != m_eventList.size())
+		{
+			event = m_eventList.front();
+			m_eventList.pop_front();
+		}
 
 		m_mutex.unlock();
 
 		SIMP_String result;
-		FormatEvent(event, result);
+		if (!FormatEvent(event, result))
+			continue;
 
 		AppendImpl(result);
 	}
-}
 
-void SIMP_Appender::FormatEvent(SIMP_LogEventPtr event,
-								SIMP_String& result)
-{
-	if (NULL == m_layout.get())
+	m_mutex.lock();
+
+	if (m_isWait)
 	{
-		assert(false);
-		return;
+		m_condition.notify_all();
+		m_isWait = false;
 	}
 
-	m_layout->Format(event, result);
+	m_mutex.unlock();
+}
+
+bool SIMP_Appender::FormatEvent(SIMP_LogEventPtr event,
+								SIMP_String& result)
+{
+	if (NULL == m_layout.get() || NULL == event.get())
+	{
+		assert(false);
+		return false;
+	}
+
+	return m_layout->Format(event, result);
 }
 
 }

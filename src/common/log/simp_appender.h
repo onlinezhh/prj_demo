@@ -38,7 +38,7 @@ protected:
 
 	virtual void AppendImpl(const SIMP_String& content) = 0;
 
-	void FormatEvent(SIMP_LogEventPtr event, SIMP_String& result);
+	bool FormatEvent(SIMP_LogEventPtr event, SIMP_String& result);
 
 protected:
 	SIMP_String m_name;
@@ -51,6 +51,7 @@ protected:
 	SIMP_Condition m_condition;
 
 	bool m_isOpen;
+	bool m_isWait;
 
 private:
 	SIMP_Appender();
