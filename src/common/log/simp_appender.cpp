@@ -3,6 +3,7 @@
  */
 
 #include "simp_appender.h"
+#include <assert.h>
 
 
 namespace SIMP_BASE
@@ -23,10 +24,13 @@ bool SIMP_Appender::Open()
 	if (m_isOpen)
 		return true;
 
-	SIMP_Thread thread(&SIMP_Appender::Append, this);
-	thread.detach();
-
 	m_isOpen = OpenImpl();
+
+	if (m_isOpen)
+	{
+		SIMP_Thread thrd(&SIMP_Appender::Append, this);
+		thrd.detach();
+	}
 
 	return m_isOpen;
 }
@@ -36,8 +40,21 @@ void SIMP_Appender::Close()
 	if (!m_isOpen)
 		return;
 
-	CloseImpl();
+	m_mutex.lock();
+
 	m_isOpen = false;
+	if (0 != m_eventList.size())
+	{
+		m_condition.wait(m_mutex);
+	}
+	else
+	{
+		m_condition.notify_all();
+	}
+
+	m_mutex.unlock();
+
+	CloseImpl();
 }
 
 void SIMP_Appender::DoAppend(SIMP_LogEventPtr event)
@@ -58,27 +75,36 @@ void SIMP_Appender::DoAppend(SIMP_LogEventPtr event)
 
 void SIMP_Appender::Append()
 {
-	m_mutex.lock();
-
-	if (0 == m_eventList.size())
+	while (m_isOpen || m_eventList.size() != 0)
 	{
-		m_condition.wait(m_mutex);
+		m_mutex.lock();
+
+		if (0 == m_eventList.size())
+		{
+			m_condition.wait(m_mutex);
+		}
+
+		SIMP_LogEventPtr event = m_eventList.front();
+		m_eventList.pop_front();
+
+		m_mutex.unlock();
+
+		SIMP_String result;
+		FormatEvent(event, result);
+
+		AppendImpl(result);
 	}
-
-	SIMP_LogEventPtr event = m_eventList.front();
-	m_eventList.pop_front();
-
-	m_mutex.unlock();
-
-	SIMP_String result;
-	FormatEvent(event, result);
-
-	AppendImpl(result);
 }
 
 void SIMP_Appender::FormatEvent(SIMP_LogEventPtr event,
 								SIMP_String& result)
 {
+	if (NULL == m_layout.get())
+	{
+		assert(false);
+		return;
+	}
+
 	m_layout->Format(event, result);
 }
 

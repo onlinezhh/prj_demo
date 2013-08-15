@@ -22,7 +22,7 @@ SIMP_Logger* SIMP_Logger::Instance()
 
 bool SIMP_Logger::Init()
 {
-	return m_loggerImpl->Init();
+	return false;
 }
 
 void SIMP_Logger::SetAppName(const SIMP_String& name)
