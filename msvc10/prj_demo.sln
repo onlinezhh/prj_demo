@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "log", "log\log.vcxproj", "{E0A9753A-AA21-43FA-95B1-B957BF202E30}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "base", "base\base.vcxproj", "{5F5C3152-9146-4DCA-9ED3-AFA245064FC9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{614567ED-BAFC-4FE1-8B94-0EF4A9F8A834}"
+	ProjectSection(SolutionItems) = preProject
+		..\src\common\CMakeLists.txt = ..\src\common\CMakeLists.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E0A9753A-AA21-43FA-95B1-B957BF202E30}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E0A9753A-AA21-43FA-95B1-B957BF202E30}.Debug|Win32.Build.0 = Debug|Win32
+		{E0A9753A-AA21-43FA-95B1-B957BF202E30}.Release|Win32.ActiveCfg = Release|Win32
+		{E0A9753A-AA21-43FA-95B1-B957BF202E30}.Release|Win32.Build.0 = Release|Win32
+		{5F5C3152-9146-4DCA-9ED3-AFA245064FC9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5F5C3152-9146-4DCA-9ED3-AFA245064FC9}.Debug|Win32.Build.0 = Debug|Win32
+		{5F5C3152-9146-4DCA-9ED3-AFA245064FC9}.Release|Win32.ActiveCfg = Release|Win32
+		{5F5C3152-9146-4DCA-9ED3-AFA245064FC9}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5F5C3152-9146-4DCA-9ED3-AFA245064FC9} = {614567ED-BAFC-4FE1-8B94-0EF4A9F8A834}
+		{E0A9753A-AA21-43FA-95B1-B957BF202E30} = {614567ED-BAFC-4FE1-8B94-0EF4A9F8A834}
+	EndGlobalSection
+EndGlobal

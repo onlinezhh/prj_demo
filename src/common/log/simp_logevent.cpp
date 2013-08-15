@@ -3,7 +3,7 @@
  */
 
 #include "simp_logevent.h"
-#include "../base/simp_helper.h"
+#include "base/simp_helper.h"
 
 
 namespace SIMP_BASE
