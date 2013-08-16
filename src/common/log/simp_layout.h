@@ -19,7 +19,7 @@ public:
 	virtual ~SIMP_Layout();
 
 public:
-	virtual bool Format(SIMP_LogEventPtr event, SIMP_String& result) = 0;
+	virtual bool Format(SIMP_String& result, SIMP_LogEventPtr event) = 0;
 };
 
 typedef boost::shared_ptr<SIMP_Layout> SIMP_LayoutPtr;

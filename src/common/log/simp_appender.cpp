@@ -86,7 +86,7 @@ void SIMP_Appender::Append()
 	{
 		m_mutex.lock();
 
-		if (0 == m_eventList.size())
+		if (0 == m_eventList.size() && m_isOpen)
 		{
 			m_isWait = true;
 			m_condition.wait(m_mutex);
@@ -102,7 +102,7 @@ void SIMP_Appender::Append()
 		m_mutex.unlock();
 
 		SIMP_String result;
-		if (!FormatEvent(event, result))
+		if (!FormatEvent(result, event))
 			continue;
 
 		AppendImpl(result);
@@ -119,8 +119,8 @@ void SIMP_Appender::Append()
 	m_mutex.unlock();
 }
 
-bool SIMP_Appender::FormatEvent(SIMP_LogEventPtr event,
-								SIMP_String& result)
+bool SIMP_Appender::FormatEvent(SIMP_String& result,
+								SIMP_LogEventPtr event)
 {
 	if (NULL == m_layout.get() || NULL == event.get())
 	{
@@ -128,7 +128,7 @@ bool SIMP_Appender::FormatEvent(SIMP_LogEventPtr event,
 		return false;
 	}
 
-	return m_layout->Format(event, result);
+	return m_layout->Format(result, event);
 }
 
 }

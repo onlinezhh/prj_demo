@@ -38,7 +38,7 @@ protected:
 
 	virtual void AppendImpl(const SIMP_String& content) = 0;
 
-	bool FormatEvent(SIMP_LogEventPtr event, SIMP_String& result);
+	bool FormatEvent(SIMP_String& result, SIMP_LogEventPtr event);
 
 protected:
 	SIMP_String m_name;
