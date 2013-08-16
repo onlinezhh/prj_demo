@@ -10,7 +10,7 @@ namespace SIMP_BASE
 {
 
 SIMP_Appender::SIMP_Appender(const SIMP_String& name, SIMP_LayoutPtr layout)
-	: m_name(name), m_layout(layout), m_isOpen(false), m_isWait(false)
+	: m_name(name), m_layout(layout), m_isOpen(false)
 {
 }
 
@@ -44,18 +44,14 @@ void SIMP_Appender::Close()
 
 	m_isOpen = false;
 
-	if (m_isWait)
+	if (0 == m_eventList.size())
 	{
 		m_condition.notify_all();
-		m_isWait = false;
 	}
 	else
 	{
-		if (0 != m_eventList.size())
-		{
-			m_isWait = true;
-			m_condition.wait(m_mutex);
-		}
+		// wait for all events to be logged
+		m_condition.wait(m_mutex);
 	}
 
 	m_mutex.unlock();
@@ -71,10 +67,10 @@ void SIMP_Appender::DoAppend(SIMP_LogEventPtr event)
 	m_mutex.lock();
 
 	m_eventList.push_back(event);
-	if (m_isWait)
+	if (1 == m_eventList.size())
 	{
+		// the event list is not empty now
 		m_condition.notify_all();
-		m_isWait = false;
 	}
 
 	m_mutex.unlock();
@@ -82,22 +78,31 @@ void SIMP_Appender::DoAppend(SIMP_LogEventPtr event)
 
 void SIMP_Appender::Append()
 {
-	while (m_isOpen || 0 != m_eventList.size())
+	while (true)
 	{
 		m_mutex.lock();
 
-		if (0 == m_eventList.size() && m_isOpen)
+		if (!m_isOpen && 0 == m_eventList.size())
 		{
-			m_isWait = true;
-			m_condition.wait(m_mutex);
+			m_mutex.unlock();
+			break;
 		}
 
-		SIMP_LogEventPtr event;
-		if (0 != m_eventList.size())
+		if (0 == m_eventList.size())
 		{
-			event = m_eventList.front();
-			m_eventList.pop_front();
+			// no event in the list to handle
+			m_condition.wait(m_mutex);
+
+			if (!m_isOpen)
+			{
+				// be waken up by Close() and the event list is still empty
+				m_mutex.unlock();
+				break;
+			}
 		}
+
+		SIMP_LogEventPtr event = m_eventList.front();
+		m_eventList.pop_front();
 
 		m_mutex.unlock();
 
@@ -108,15 +113,7 @@ void SIMP_Appender::Append()
 		AppendImpl(result);
 	}
 
-	m_mutex.lock();
-
-	if (m_isWait)
-	{
-		m_condition.notify_all();
-		m_isWait = false;
-	}
-
-	m_mutex.unlock();
+	m_condition.notify_all();
 }
 
 bool SIMP_Appender::FormatEvent(SIMP_String& result,

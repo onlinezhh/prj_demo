@@ -51,7 +51,6 @@ protected:
 	SIMP_Condition m_condition;
 
 	bool m_isOpen;
-	bool m_isWait;
 
 private:
 	SIMP_Appender();
