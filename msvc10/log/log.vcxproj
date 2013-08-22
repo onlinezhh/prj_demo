@@ -63,6 +63,9 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\common\log\simp_appender.h" />
     <ClInclude Include="..\..\src\common\log\simp_appendermanager.h" />
+    <ClInclude Include="..\..\src\common\log\simp_consoleappender.h" />
+    <ClInclude Include="..\..\src\common\log\simp_defaultlayout.h" />
+    <ClInclude Include="..\..\src\common\log\simp_fileappender.h" />
     <ClInclude Include="..\..\src\common\log\simp_layout.h" />
     <ClInclude Include="..\..\src\common\log\simp_logevent.h" />
     <ClInclude Include="..\..\src\common\log\simp_loggerimpl.h" />
@@ -75,6 +78,9 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\common\log\simp_appender.cpp" />
     <ClCompile Include="..\..\src\common\log\simp_appendermanager.cpp" />
+    <ClCompile Include="..\..\src\common\log\simp_consoleappender.cpp" />
+    <ClCompile Include="..\..\src\common\log\simp_defaultlayout.cpp" />
+    <ClCompile Include="..\..\src\common\log\simp_fileappender.cpp" />
     <ClCompile Include="..\..\src\common\log\simp_layout.cpp" />
     <ClCompile Include="..\..\src\common\log\simp_logevent.cpp" />
     <ClCompile Include="..\..\src\common\log\simp_logger.cpp" />

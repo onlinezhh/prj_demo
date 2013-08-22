@@ -2,8 +2,11 @@ SET(LIBLOG_LIST
 	simp_logger.cpp
 	simp_loggerimpl.cpp
 	simp_appender.cpp
+	simp_fileappender.cpp
+	simp_consoleappender.cpp
 	simp_appendermanager.cpp
 	simp_layout.cpp
+	simp_defaultlayout.cpp
 	simp_logevent.cpp)
 
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)

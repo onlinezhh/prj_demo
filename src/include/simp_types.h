@@ -32,6 +32,7 @@ namespace SIMP_BASE
 	typedef std::wfstream SIMP_FileStream;
 	#define tcout std::wcout;
 	#define tcin std::wcin;
+	#define tcerr std::wcerr;
 #else
 	typedef char tchar;
 	typedef std::string SIMP_String;
@@ -46,6 +47,7 @@ namespace SIMP_BASE
 	typedef std::fstream SIMP_FileStream;
 	#define tcout std::cout;
 	#define tcin std::cin;
+	#define tcerr std::cerr;
 #endif
 
 	typedef boost::thread SIMP_Thread;

@@ -51,9 +51,6 @@ protected:
 	SIMP_Condition m_condition;
 
 	bool m_isOpen;
-
-private:
-	SIMP_Appender();
 };
 
 typedef boost::shared_ptr<SIMP_Appender> SIMP_AppenderPtr;
