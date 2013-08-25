@@ -35,10 +35,7 @@ protected:
 
 	virtual bool OpenImpl() = 0;
 	virtual void CloseImpl() = 0;
-
-	virtual void AppendImpl(const SIMP_String& content) = 0;
-
-	bool FormatEvent(SIMP_String& result, SIMP_LogEventPtr event);
+	virtual void AppendImpl(SIMP_LogEventPtr event) = 0;
 
 protected:
 	SIMP_String m_name;

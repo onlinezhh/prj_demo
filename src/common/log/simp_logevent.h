@@ -16,7 +16,11 @@ class SIMP_LogEvent
 {
 public:
 	SIMP_LogEvent();
-	SIMP_LogEvent(LogLevel ll, const SIMP_String& msg, const char* file, int line);
+	SIMP_LogEvent(LogLevel ll,
+				  const SIMP_String& msg,
+				  const char* file,
+				  int line,
+				  const SIMP_DateTime& timestamp);
 	SIMP_LogEvent(const SIMP_LogEvent& event);
 	~SIMP_LogEvent();
 
@@ -28,6 +32,7 @@ public:
 	SIMP_String m_msg;
 	SIMP_String m_file;
 	int m_line;
+	SIMP_DateTime m_timestamp;
 };
 
 typedef boost::shared_ptr<SIMP_LogEvent> SIMP_LogEventPtr;

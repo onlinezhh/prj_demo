@@ -13,6 +13,7 @@
 #include <map>
 #include <boost/shared_ptr.hpp>
 #include <boost/thread.hpp>
+#include <boost/date_time.hpp>
 
 
 namespace SIMP_BASE
@@ -53,6 +54,7 @@ namespace SIMP_BASE
 	typedef boost::thread SIMP_Thread;
 	typedef boost::mutex SIMP_Mutex;
 	typedef boost::condition_variable_any SIMP_Condition;
+	typedef boost::posix_time::ptime SIMP_DateTime;
 }
 
 #endif

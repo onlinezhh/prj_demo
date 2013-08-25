@@ -101,31 +101,16 @@ void SIMP_Appender::Append()
 			}
 		}
 
+		// at least one event had been put in the list
 		SIMP_LogEventPtr event = m_eventList.front();
 		m_eventList.pop_front();
 
 		m_mutex.unlock();
 
-		SIMP_String result;
-		if (!FormatEvent(result, event))
-			continue;
-
-		AppendImpl(result);
+		AppendImpl(event);
 	}
 
 	m_condition.notify_all();
-}
-
-bool SIMP_Appender::FormatEvent(SIMP_String& result,
-								SIMP_LogEventPtr event)
-{
-	if (NULL == m_layout.get() || NULL == event.get())
-	{
-		assert(false);
-		return false;
-	}
-
-	return m_layout->Format(result, event);
 }
 
 }

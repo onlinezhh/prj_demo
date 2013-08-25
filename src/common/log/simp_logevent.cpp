@@ -17,8 +17,9 @@ SIMP_LogEvent::SIMP_LogEvent()
 SIMP_LogEvent::SIMP_LogEvent(LogLevel ll,
 							 const SIMP_String& msg,
 							 const char* file,
-							 int line)
-	: m_logLevel(ll), m_msg(msg), m_line(line)
+							 int line,
+							 const SIMP_DateTime& timestamp)
+	: m_logLevel(ll), m_msg(msg), m_line(line), m_timestamp(timestamp)
 {
 	m_file = SIMP_C_STR_TO_TSTRING(file);
 }
@@ -38,6 +39,7 @@ SIMP_LogEvent& SIMP_LogEvent::operator =(const SIMP_LogEvent& event)
 	m_msg = event.m_msg;
 	m_file = event.m_file;
 	m_line = event.m_line;
+	m_timestamp = event.m_timestamp;
 
 	return *this;
 }

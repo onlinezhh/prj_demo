@@ -11,14 +11,14 @@
 namespace SIMP_BASE
 {
 
-class SIMP_DefaultLayout
+class SIMP_DefaultLayout : public SIMP_Layout
 {
 public:
 	SIMP_DefaultLayout();
 	virtual ~SIMP_DefaultLayout();
 
 public:
-	virtual bool Format(SIMP_String& result, SIMP_LogEventPtr event);
+	virtual void FormatEvent(SIMP_OStream& out, SIMP_LogEventPtr event);
 
 private:
 	SIMP_DefaultLayout(const SIMP_DefaultLayout&);

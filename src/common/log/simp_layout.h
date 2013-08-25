@@ -19,7 +19,13 @@ public:
 	virtual ~SIMP_Layout();
 
 public:
-	virtual bool Format(SIMP_String& result, SIMP_LogEventPtr event) = 0;
+	static SIMP_String LLToString(LogLevel ll) { return SIMP_String(sm_llDesc[ll - LL_ALL - 1]); }
+
+public:
+	virtual void FormatEvent(SIMP_OStream& out, SIMP_LogEventPtr event) = 0;
+
+private:
+	static tchar* sm_llDesc[6];
 };
 
 typedef boost::shared_ptr<SIMP_Layout> SIMP_LayoutPtr;

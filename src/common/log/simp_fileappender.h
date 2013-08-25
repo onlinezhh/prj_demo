@@ -14,7 +14,10 @@ namespace SIMP_BASE
 class SIMP_FileAppender : public SIMP_Appender
 {
 public:
-	SIMP_FileAppender(const SIMP_String& name, SIMP_LayoutPtr layout);
+	SIMP_FileAppender(const SIMP_String& name,
+					  SIMP_LayoutPtr layout,
+					  const SIMP_String& filename,
+					  bool immediateFlush = true);
 	virtual ~SIMP_FileAppender();
 
 protected:
@@ -24,6 +27,8 @@ protected:
 
 private:
 	SIMP_OFileStream m_outStream;
+	SIMP_String m_filename;
+	bool m_immediateFlush;
 
 private:
 	SIMP_FileAppender();

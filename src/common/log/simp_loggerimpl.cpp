@@ -26,7 +26,7 @@ void SIMP_LoggerImpl::Log(LogLevel ll,
 	if (!CanLog(ll))
 		return;
 
-	SIMP_LogEventPtr eventPtr(new SIMP_LogEvent(ll, msg, file, line));
+	SIMP_LogEventPtr eventPtr(new SIMP_LogEvent(ll, msg, file, line, boost::get_system_time()));
 	AppendLoop(eventPtr);
 }
 
