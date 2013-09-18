@@ -23,7 +23,7 @@ public:
 protected:
 	virtual bool OpenImpl();
 	virtual void CloseImpl();
-	virtual void AppendImpl(const SIMP_String& content);
+	virtual void AppendImpl(SIMP_LogEventPtr event);
 
 private:
 	SIMP_OFileStream m_outStream;

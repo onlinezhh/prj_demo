@@ -17,7 +17,7 @@ SIMP_ConsoleAppender::~SIMP_ConsoleAppender()
 {
 }
 
-void SIMP_ConsoleAppender::AppendImpl(const SIMP_String& content)
+void SIMP_ConsoleAppender::AppendImpl(SIMP_LogEventPtr event)
 {
 
 }
